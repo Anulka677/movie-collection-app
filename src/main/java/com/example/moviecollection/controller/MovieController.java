@@ -3,7 +3,8 @@ package com.example.moviecollection.controller;
 import com.example.moviecollection.model.Movie;
 import com.example.moviecollection.service.MovieService;
 import org.springframework.web.bind.annotation.*;
-
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,9 +30,10 @@ public class MovieController {
     }
 
     @PostMapping
-    public Movie addMovie(@RequestBody Movie movie) {
-        return movieService.saveMovie(movie);
+    public ResponseEntity<Movie> addMovie(@Valid @RequestBody Movie movie) {
+        return ResponseEntity.ok(movieService.saveMovie(movie));
     }
+
 
     @DeleteMapping("/{id}")
     public void deleteMovie(@PathVariable Long id) {
@@ -67,4 +69,10 @@ public class MovieController {
     public List<Movie> searchByDescription(@RequestParam String desc) {
         return movieService.searchByDescription(desc);
     }
+
+    @PutMapping("/{id}")
+    public Movie updateMovie(@PathVariable Long id, @RequestBody Movie updatedMovie) {
+        return movieService.updateMovie(id, updatedMovie);
+    }
+
 }

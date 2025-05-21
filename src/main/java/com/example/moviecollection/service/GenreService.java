@@ -22,4 +22,15 @@ public class GenreService {
     public Genre saveGenre(Genre genre) {
         return genreRepository.save(genre);
     }
+
+    public Genre updateGenre(Long id, Genre updatedGenre) {
+        Genre existing = genreRepository.findById(id).orElseThrow();
+        existing.setName(updatedGenre.getName());
+        return genreRepository.save(existing);
+    }
+
+    public void deleteGenre(Long id) {
+        genreRepository.deleteById(id);
+    }
+
 }

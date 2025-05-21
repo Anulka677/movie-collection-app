@@ -1,14 +1,8 @@
 package com.example.moviecollection.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Director {
 
     @Id
@@ -16,4 +10,28 @@ public class Director {
     private Long id;
 
     private String fullName;
+
+    public Director() {
+    }
+
+    public Director(Long id, String fullName) {
+        this.id = id;
+        this.fullName = fullName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 }

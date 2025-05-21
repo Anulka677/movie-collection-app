@@ -55,4 +55,15 @@ public class MovieService {
     public List<Movie> searchByDescription(String desc) {
         return movieRepository.findByDescriptionContainingIgnoreCase(desc);
     }
+
+    public Movie updateMovie(Long id, Movie updatedMovie) {
+        Movie existing = movieRepository.findById(id).orElseThrow();
+        existing.setTitle(updatedMovie.getTitle());
+        existing.setDescription(updatedMovie.getDescription());
+        existing.setReleaseYear(updatedMovie.getReleaseYear());
+        existing.setDirector(updatedMovie.getDirector());
+        existing.setGenre(updatedMovie.getGenre());
+        return movieRepository.save(existing);
+    }
+
 }

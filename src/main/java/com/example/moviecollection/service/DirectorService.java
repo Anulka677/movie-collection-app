@@ -22,4 +22,15 @@ public class DirectorService {
     public Director saveDirector(Director director) {
         return directorRepository.save(director);
     }
+
+    public Director updateDirector(Long id, Director updatedDirector) {
+        Director existing = directorRepository.findById(id).orElseThrow();
+        existing.setFullName(updatedDirector.getFullName());
+        return directorRepository.save(existing);
+    }
+
+    public void deleteDirector(Long id) {
+        directorRepository.deleteById(id);
+    }
+
 }

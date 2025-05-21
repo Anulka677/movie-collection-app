@@ -4,6 +4,9 @@ import com.example.moviecollection.model.AppUser;
 import com.example.moviecollection.service.AppUserService;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -29,8 +32,8 @@ public class AppUserController {
     }
 
     @PostMapping
-    public AppUser addUser(@RequestBody AppUser user) {
-        return appUserService.saveUser(user);
+    public ResponseEntity<AppUser> addUser(@Valid @RequestBody AppUser user) {
+        return ResponseEntity.ok(appUserService.saveUser(user));
     }
 
     @DeleteMapping("/{id}")
@@ -57,4 +60,11 @@ public class AppUserController {
     public String getMostWatchedDirector(@PathVariable Long userId) {
         return appUserService.getMostWatchedDirector(userId);
     }
+
+    @PutMapping("/{id}")
+    public AppUser updateUser(@PathVariable Long id, @RequestBody AppUser updatedUser) {
+        return appUserService.updateUser(id, updatedUser);
+    }
+
+
 }

@@ -26,4 +26,15 @@ public class DirectorController {
     public Director addDirector(@RequestBody Director director) {
         return directorService.saveDirector(director);
     }
+
+    @PutMapping("/{id}")
+    public Director updateDirector(@PathVariable Long id, @RequestBody Director updatedDirector) {
+        return directorService.updateDirector(id, updatedDirector);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteDirector(@PathVariable Long id) {
+        directorService.deleteDirector(id);
+    }
+
 }
