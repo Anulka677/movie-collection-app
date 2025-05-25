@@ -72,7 +72,7 @@ public class AppUserService {
                 .entrySet().stream()
                 .max(Map.Entry.comparingByValue())
                 .map(Map.Entry::getKey)
-                .orElse("Brak");
+                .orElse("Lack");
     }
 
     public String getMostWatchedDirector(Long userId) {
@@ -83,7 +83,7 @@ public class AppUserService {
                 .entrySet().stream()
                 .max(Map.Entry.comparingByValue())
                 .map(Map.Entry::getKey)
-                .orElse("Brak");
+                .orElse("Lack");
     }
 
     public AppUser updateUser(Long id, AppUser updatedUser) {
