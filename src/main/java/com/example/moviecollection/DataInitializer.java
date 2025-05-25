@@ -34,6 +34,9 @@ public class DataInitializer implements CommandLineRunner {
         Genre drama = genreRepo.save(new Genre(null, "Drama"));
         Genre scifi = genreRepo.save(new Genre(null, "Sci-Fi"));
         Genre thriller = genreRepo.save(new Genre(null, "Thriller"));
+        Genre action = genreRepo.save(new Genre(null, "Action"));
+        Genre comedy = genreRepo.save(new Genre(null, "Comedy"));
+        Genre horror = genreRepo.save(new Genre(null, "Horror"));
 
         Director nolan = directorRepo.save(new Director(null, "Christopher Nolan"));
         Director villeneuve = directorRepo.save(new Director(null, "Denis Villeneuve"));
