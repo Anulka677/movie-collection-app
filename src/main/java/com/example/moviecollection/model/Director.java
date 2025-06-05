@@ -1,6 +1,7 @@
 package com.example.moviecollection.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Director {
@@ -9,6 +10,7 @@ public class Director {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String fullName;
 
     public Director() {
@@ -33,5 +35,18 @@ public class Director {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Director)) return false;
+        Director that = (Director) o;
+        return id != null && id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

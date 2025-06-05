@@ -1,10 +1,9 @@
 package com.example.moviecollection.model;
 
 import jakarta.persistence.*;
-import java.util.List;
-import java.util.Map;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
 
 @Entity
 public class AppUser {
@@ -17,23 +16,18 @@ public class AppUser {
     @Column(unique = true)
     private String username;
 
-    @ManyToMany
-    private List<Movie> watchedMovies;
+    @NotBlank
+    private String password;
 
-    @ElementCollection
-    @CollectionTable(name = "user_movie_ratings")
-    @MapKeyJoinColumn(name = "movie_id")
-    @Column(name = "rating")
-    private Map<Movie, Integer> ratings;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<WatchedMovie> watchedMovies;
 
-    public AppUser() {
-    }
+    public AppUser() {}
 
-    public AppUser(Long id, String username, List<Movie> watchedMovies, Map<Movie, Integer> ratings) {
+    public AppUser(Long id, String username, List<WatchedMovie> watchedMovies) {
         this.id = id;
         this.username = username;
         this.watchedMovies = watchedMovies;
-        this.ratings = ratings;
     }
 
     public Long getId() {
@@ -52,19 +46,19 @@ public class AppUser {
         this.username = username;
     }
 
-    public List<Movie> getWatchedMovies() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<WatchedMovie> getWatchedMovies() {
         return watchedMovies;
     }
 
-    public void setWatchedMovies(List<Movie> watchedMovies) {
+    public void setWatchedMovies(List<WatchedMovie> watchedMovies) {
         this.watchedMovies = watchedMovies;
-    }
-
-    public Map<Movie, Integer> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(Map<Movie, Integer> ratings) {
-        this.ratings = ratings;
     }
 }

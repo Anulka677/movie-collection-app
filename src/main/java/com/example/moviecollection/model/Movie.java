@@ -1,9 +1,8 @@
 package com.example.moviecollection.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotNull;
 
 
 @Entity
@@ -17,20 +16,22 @@ public class Movie {
     private String title;
 
     @NotBlank
+    @Size(min = 10, message = "Description must be at least 10 characters long")
     private String description;
 
     @Min(1900)
     @Max(2100)
     private int releaseYear;
 
+    @NotNull
     @ManyToOne
     private Director director;
 
+    @NotNull
     @ManyToOne
     private Genre genre;
 
-    public Movie() {
-    }
+    public Movie() {}
 
     public Movie(Long id, String title, String description, int releaseYear, Director director, Genre genre) {
         this.id = id;
